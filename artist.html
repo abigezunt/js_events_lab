@@ -11,16 +11,15 @@
     	this.artist_id = artist_id;
     };
 
-    Artist.prototype.generateHTML = function(){
-        return "<h2><li onclick='displaybio(" + this.artist_id + ", this)' class='artist-link-item'>" + this.name + "</h2></li>";
-    	};
-
-    
     var artists = []
-    artists.push(zappa = new Artist(1, "Frank Zappa", "Frank Zappa made a lot of records in the 1970s."));
-    artists.push(simone = new Artist(2, "Nina Simone", "Nina Simone sang songs and lived in France."));
-    artists.push(anderson = new Artist(3, "Laurie Anderson", "Laurie Anderson made weird performance art in the 1980s."));
-    artists.push(talking_heads = new Artist(4, "Talking Heads", "The Talking Heads made dance music in the 1980s."));
+    artists.push(new Artist(1, "Frank Zappa", "Frank Zappa made a lot of records in the 1970s."));
+    artists.push(new Artist(2, "Nina Simone", "Nina Simone sang songs and lived in France."));
+    artists.push(new Artist(3, "Laurie Anderson", "Laurie Anderson made weird performance art in the 1980s."));
+    artists.push(new Artist(4, "Talking Heads", "The Talking Heads made dance music in the 1980s."));
+
+    Artist.prototype.generateHTML = function(){
+        return "<li onclick='displaybio(" + this.artist_id + ", this)' class='artist-link-item'><h2>" + this.name + "</h2></li>";
+    	};
 
     function list_artists() {
     	var list = document.getElementById('artist-list')
@@ -52,12 +51,6 @@
 
 <h2>List of Artists</h2>
 <ul id="artist-list">
-
-<!-- <div><li onclick="displaybio(zappa, this)" class="artist-link-item" >Frank Zappa</li></div>
-<div><li onclick="displaybio(simone, this)" class="artist-link-item" >Nina Simone</li></div>
-<div><li onclick="displaybio(anderson, this)" class="artist-link-item" >Laurie Anderson</li></div>
-<div><li onclick="displaybio(talking_heads, this)" class="artist-link-item" >Talking Heads</li></div>
- -->
 </ul>
 
 <p id="description"></p>
