@@ -5,36 +5,59 @@
 
   <script>
 
-    var Artist = function(bio){
+    var Artist = function(artist_id, name, bio){
     	this.bio = bio;
+    	this.name = name;
+    	this.artist_id = artist_id;
     };
 
-    var zappa = new Artist("Frank Zappa made a lot of records in the 1970s.");
-    var simone = new Artist("Nina Simone sang songs and lived in France.");
-    var anderson = new Artist("Laurie Anderson made weird performance art in the 1980s.");
-    var talking_heads = new Artist("The Talking Heads made dance music in the 1980s.");
+    Artist.prototype.generateHTML = function(){
+        return "<h2><li onclick='displaybio(" + this.artist_id + ", this)' class='artist-link-item'>" + this.name + "</h2></li>";
+    	};
 
-    function displaybio(artist, html_item) {
+    
+    var artists = []
+    artists.push(zappa = new Artist(1, "Frank Zappa", "Frank Zappa made a lot of records in the 1970s."));
+    artists.push(simone = new Artist(2, "Nina Simone", "Nina Simone sang songs and lived in France."));
+    artists.push(anderson = new Artist(3, "Laurie Anderson", "Laurie Anderson made weird performance art in the 1980s."));
+    artists.push(talking_heads = new Artist(4, "Talking Heads", "The Talking Heads made dance music in the 1980s."));
+
+    function list_artists() {
+    	var list = document.getElementById('artist-list')
+    	for (i = 0; i < artists.length; i ++ ) {
+        list.innerHTML += artists[i].generateHTML();
+    	};
+    };
+
+    function lookup(id) {
+    	for (var i = 0; i < artists.length; i ++ ) {
+    	  if (artists[i].artist_id === id) {
+    	  	return artists[i];
+    	  }
+    	};
+    };
+
+    function displaybio(artist_id, html_item) {
       all_links = document.getElementsByClassName('artist-link-item')
       for (i = 0; i < all_links.length; i ++) {
-      	all_links[i].style.backgroundColor = "white";
+      	all_links[i].style.backgroundColor = "transparent";
       };
-      document.getElementById("description").innerHTML=artist.bio;
+      document.getElementById("description").innerHTML=lookup(artist_id).bio;
       html_item.style.backgroundColor = "#ff0000";
     };
 
   </script>
 </head>
-<body>
+<body  onload="list_artists()">
 
 <h2>List of Artists</h2>
 <ul id="artist-list">
 
-<div><li onclick="displaybio(zappa, this)" class="artist-link-item" >Frank Zappa</li></div>
+<!-- <div><li onclick="displaybio(zappa, this)" class="artist-link-item" >Frank Zappa</li></div>
 <div><li onclick="displaybio(simone, this)" class="artist-link-item" >Nina Simone</li></div>
 <div><li onclick="displaybio(anderson, this)" class="artist-link-item" >Laurie Anderson</li></div>
 <div><li onclick="displaybio(talking_heads, this)" class="artist-link-item" >Talking Heads</li></div>
-
+ -->
 </ul>
 
 <p id="description"></p>
