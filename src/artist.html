@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Daddy-O Records</title>
+
+  <script>
+
+    var Artist = function(bio){
+    	this.bio = bio;
+    };
+
+    var zappa = new Artist("Frank Zappa made a lot of records in the 1970s.");
+    var simone = new Artist("Nina Simone sang songs and lived in France.");
+    var anderson = new Artist("Laurie Anderson made weird performance art in the 1980s.");
+    var talking_heads = new Artist("The Talking Heads made dance music in the 1980s.");
+
+    function displaybio(artist)
+    {
+    document.getElementById("description").innerHTML=artist.bio;
+    document.getElementById(artist).style="background-color:#D94A38;
+    }
+
+  </script>
+</head>
+<body>
+
+<h2>List of Artists</h2>
+<ul id="artist-list">
+
+<li onclick="displaybio(zappa) id="zappa" >Frank Zappa</li>
+<li onclick="displaybio(simone)" id="simone">Nina Simone</li>
+<li onclick="displaybio(anderson)" id="anderson">Laurie Anderson</li>
+<li onclick="displaybio(talking_heads)" id="talking_heads">Talking Heads</li>
+
+</ul>
+
+<p id="description"></p>
+
+</body>
+</html>
